@@ -28,6 +28,14 @@ namespace backend
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddCors(options => options.AddPolicy("Cors",
+                builder => 
+                {
+                    builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                }));
             services.AddMvc();
         }
 
@@ -37,6 +45,7 @@ namespace backend
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseCors("Cors");
             app.UseMvc();
         }
     }
