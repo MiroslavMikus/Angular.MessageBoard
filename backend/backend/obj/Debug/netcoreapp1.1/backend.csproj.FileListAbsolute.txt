@@ -1,0 +1,9 @@
+C:\Users\miros\OneDrive\000 Projekte\Web\MessageBoard\backend\backend\bin\Debug\netcoreapp1.1\backend.deps.json
+C:\Users\miros\OneDrive\000 Projekte\Web\MessageBoard\backend\backend\bin\Debug\netcoreapp1.1\backend.runtimeconfig.json
+C:\Users\miros\OneDrive\000 Projekte\Web\MessageBoard\backend\backend\bin\Debug\netcoreapp1.1\backend.runtimeconfig.dev.json
+C:\Users\miros\OneDrive\000 Projekte\Web\MessageBoard\backend\backend\bin\Debug\netcoreapp1.1\backend.dll
+C:\Users\miros\OneDrive\000 Projekte\Web\MessageBoard\backend\backend\bin\Debug\netcoreapp1.1\backend.pdb
+C:\Users\miros\OneDrive\000 Projekte\Web\MessageBoard\backend\backend\obj\Debug\netcoreapp1.1\backend.csprojResolveAssemblyReference.cache
+C:\Users\miros\OneDrive\000 Projekte\Web\MessageBoard\backend\backend\obj\Debug\netcoreapp1.1\backend.AssemblyInfo.cs
+C:\Users\miros\OneDrive\000 Projekte\Web\MessageBoard\backend\backend\obj\Debug\netcoreapp1.1\backend.dll
+C:\Users\miros\OneDrive\000 Projekte\Web\MessageBoard\backend\backend\obj\Debug\netcoreapp1.1\backend.pdb
