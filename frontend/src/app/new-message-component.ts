@@ -31,7 +31,6 @@ export class NewMessageComponent{
     }
 
     post(){ 
-        console.log(this.message.owner);
-        console.log(this.message.text);
+        this.webService.postMessage(this.message);
     }
 }

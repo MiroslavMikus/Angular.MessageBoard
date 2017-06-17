@@ -7,7 +7,13 @@ export class WebService{
     
     constructor(private http : Http){}
 
+    baseUrl = "http://localhost:19625/api";
+
      getMessages(){
-        return this.http.get('http://localhost:19625/api/messages').toPromise();
+        return this.http.get(this.baseUrl + '/messages').toPromise();
+    }
+
+    postMessage(message){
+        return this.http.post(this.baseUrl + '/messages', message).toPromise();
     }
 }
