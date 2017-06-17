@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { NewMessageComponent } from './new-message-component';
-import { MessageComponent } from './messages-component';
 import { NavComponent } from './nav-component';
 
 
@@ -9,8 +7,8 @@ import { NavComponent } from './nav-component';
   selector: 'my-app',
   template: `
   <navBar></navBar>
-  <new-message></new-message>
-  <messages></messages>`,
+  <router-outlet></router-outlet>
+  `,
 })
 
 export class AppComponent  {
