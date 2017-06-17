@@ -32,9 +32,10 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] Message a_message)
+        public Message Post([FromBody] Message a_message)
         {
             _messages.Add(a_message);
+            return a_message;
         }
     }
 }
