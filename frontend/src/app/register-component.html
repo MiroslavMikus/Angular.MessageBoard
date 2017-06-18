@@ -16,6 +16,8 @@
             <input class="RegisterInput" type="password" mdInput placeholder="Confirm Password" formControlName="confirmPassword">
         </md-input-container>
         <br>
+        <span *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
+        <br>
         <button md-raised-button color="primary">Register</button>
     </form>
 </md-card>
