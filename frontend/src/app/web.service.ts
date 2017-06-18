@@ -1,7 +1,8 @@
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
-import { MdSnackBar} from '@angular/material';
+import { MdSnackBar } from '@angular/material';
+import 'rxjs/add/operator/toPromise';
+import { Subject } from 'rxjs/Rx';
 
 
 @Injectable()
@@ -13,7 +14,11 @@ export class WebService{
 
     baseUrl = "http://localhost:19625/api";
 
-    messages = [];
+    private messagesStore = [];
+    
+    private messageSubject = new Subject();
+
+    public messages = this.messageSubject.asObservable();
 
     getMessages(user){
 
@@ -21,7 +26,8 @@ export class WebService{
 
             this.http.get(this.baseUrl + '/Messages' + user)
                     .subscribe(response =>{
-                        this.messages = response.json();
+                        this.messagesStore = response.json();
+                        this.messageSubject.next(this.messagesStore);
                     }, error=> {
                         this.handleError("Unable to get messages");
                     });
@@ -30,7 +36,7 @@ export class WebService{
     postMessage(message){
             this.http.post(this.baseUrl + '/Messages', message)
                     .subscribe(response => {
-                        this.messages.push(response.json());   
+                        this.messagesStore.push(response.json());   
                     }, error =>{
                         this.handleError("Unable to post message");
                     });
