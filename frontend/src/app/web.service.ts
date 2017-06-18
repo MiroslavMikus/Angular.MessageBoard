@@ -8,17 +8,21 @@ import { MdSnackBar} from '@angular/material';
 export class WebService{
     
     constructor(private http : Http, private snackBar : MdSnackBar){
-        this.getMessages();
+        this.getMessages('');
     }
 
     baseUrl = "http://localhost:19625/api";
 
     messages = [];
 
-    async getMessages(){
+    async getMessages(user){
         try {
-            var response = await this.http.get(this.baseUrl + '/Messages').toPromise();
+            user = (user) ? '/' + user : '';
+
+            var response = await this.http.get(this.baseUrl + '/Messages' + user).toPromise();
+
             this.messages = response.json();
+
         } catch (error) {
             this.handleError("Unable to get messages");
         } 
@@ -27,7 +31,9 @@ export class WebService{
     async postMessage(message){
         try {
                 var response = await this.http.post(this.baseUrl + '/Messages', message).toPromise();
-                this.messages.push(response.json());            
+
+                this.messages.push(response.json());   
+                         
         } catch (error) {
             this.handleError("Unable to post message");
         }

@@ -20,7 +20,8 @@ export class MessageComponent{
     constructor(private webService : WebService, private route : ActivatedRoute){}
 
     ngOnInit(){
-        console.log(this.route.snapshot.params.name);
+        var name = this.route.snapshot.params.name;
+        this.webService.getMessages(name);
     }
 
 }
