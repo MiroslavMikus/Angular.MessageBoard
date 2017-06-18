@@ -37,6 +37,7 @@ export class WebService{
             this.http.post(this.baseUrl + '/Messages', message)
                     .subscribe(response => {
                         this.messagesStore.push(response.json());   
+                        this.messageSubject.next(this.messagesStore);
                     }, error =>{
                         this.handleError("Unable to post message");
                     });
