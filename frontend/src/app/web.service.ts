@@ -15,28 +15,25 @@ export class WebService{
 
     messages = [];
 
-    async getMessages(user){
-        try {
+    getMessages(user){
+
             user = (user) ? '/' + user : '';
 
-            var response = await this.http.get(this.baseUrl + '/Messages' + user).toPromise();
-
-            this.messages = response.json();
-
-        } catch (error) {
-            this.handleError("Unable to get messages");
-        } 
+            this.http.get(this.baseUrl + '/Messages' + user)
+                    .subscribe(response =>{
+                        this.messages = response.json();
+                    }, error=> {
+                        this.handleError("Unable to get messages");
+                    });
     }
 
-    async postMessage(message){
-        try {
-                var response = await this.http.post(this.baseUrl + '/Messages', message).toPromise();
-
-                this.messages.push(response.json());   
-                         
-        } catch (error) {
-            this.handleError("Unable to post message");
-        }
+    postMessage(message){
+            this.http.post(this.baseUrl + '/Messages', message)
+                    .subscribe(response => {
+                        this.messages.push(response.json());   
+                    }, error =>{
+                        this.handleError("Unable to post message");
+                    });
     }
 
     private handleError(error){
