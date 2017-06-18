@@ -12,35 +12,30 @@ namespace backend.Controllers
     [Route("api/Messages")]
     public class MessagesController : Controller
     {
-        static List<Message> _messages = new List<Message>()
+        private readonly ApiContext context;
+
+        public MessagesController(ApiContext a_context)
         {
-            new Message()
-            {
-                Owner = "MMI",
-                Text ="Some Text from backend"
-            },
-            new Message()
-            {
-                Owner = "ETR",
-                Text = "Also some test text"
-            }
-        };
+            context = a_context;
+        }
 
         public IEnumerable<Message> Get()
         {
-            return _messages;
+            return context.Messages;
         }
+
         [HttpGet("{name}")]
         public IEnumerable<Message> Get(string name)
         {
-            return _messages.Where(a => string.Equals(a.Owner, name, StringComparison.OrdinalIgnoreCase)).ToList();
+            return context.Messages.Where(a => string.Equals(a.Owner, name, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
         [HttpPost]
         public Message Post([FromBody] Message a_message)
         {
-            _messages.Add(a_message);
-            return a_message;
+            var dbMessage = context.Messages.Add(a_message).Entity;
+            context.SaveChanges();
+            return dbMessage;
         }
     }
 }

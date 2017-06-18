@@ -18,11 +18,22 @@ namespace backend.Controllers
     [Route("auth")]
     public class AuthController : Controller
     {
+        private readonly ApiContext context;
+
+        public AuthController(ApiContext a_context)
+        {
+            context = a_context;
+        }
+
+
         [HttpPost("register")]
         public JwtPacket Register([FromBody] User a_user)
         {
             var jwt = new JwtSecurityToken();
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+
+            context.Users.Add(a_user);
+            context.SaveChanges();
 
             return new JwtPacket() { Token = encodedJwt };
         }

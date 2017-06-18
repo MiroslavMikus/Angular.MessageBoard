@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend
 {
@@ -28,6 +30,9 @@ namespace backend
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+
+            services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase());
+
             services.AddCors(options => options.AddPolicy("Cors",
                 builder => 
                 {
@@ -39,6 +44,22 @@ namespace backend
             services.AddMvc();
         }
 
+        public void SeedData(ApiContext a_context)
+        {
+            a_context.Messages.Add(new Message()
+            {
+                Owner = "MMI",
+                Text = "Some Text from backend"
+            });
+
+            a_context.Messages.Add(new Message()
+            {
+                Owner = "ETR",
+                Text = "Also some test text"
+            });
+            a_context.SaveChanges();
+        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -47,6 +68,9 @@ namespace backend
 
             app.UseCors("Cors");
             app.UseMvc();
+
+
+            SeedData(app.ApplicationServices.GetService<ApiContext>());
         }
     }
 }
