@@ -30,6 +30,11 @@ namespace backend.Controllers
         {
             return _messages;
         }
+        [HttpGet("{name}")]
+        public IEnumerable<Message> Get(string name)
+        {
+            return _messages.Where(a => string.Equals(a.Owner,name,StringComparison.OrdinalIgnoreCase)).ToList();
+        }
 
         [HttpPost]
         public Message Post([FromBody] Message a_message)
