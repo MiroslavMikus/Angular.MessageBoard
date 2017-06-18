@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using backend.Models;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace backend.Controllers
 {
@@ -56,7 +59,14 @@ namespace backend.Controllers
 
         private JwtPacket CreateJwtPacket(User a_user)
         {
-            var jwt = new JwtSecurityToken();
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("this the secret pharse"));
+
+            var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new Claim[] { new Claim(JwtRegisteredClaimNames.Sub, a_user.ID)};
+
+            var jwt = new JwtSecurityToken(claims: claims, signingCredentials: signingCredentials);
+
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
             return new JwtPacket() { Token = encodedJwt, FirstName = a_user.FirstName };
         }

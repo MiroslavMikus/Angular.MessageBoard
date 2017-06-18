@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 
 
@@ -19,6 +19,11 @@ export class AuthService{
 
     get isAuthenticated(){
         return !!localStorage.getItem(this.token_key);
+    }
+
+    get tokenHeader(){
+        var header = new Headers({'Authorization': 'Bearer ' + localStorage.getItem(this.token_key)});
+        return new RequestOptions({headers: header});
     }
 
     login(loginData){
