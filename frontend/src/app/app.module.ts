@@ -10,9 +10,11 @@ import { AppComponent }  from './app.component';
 import { MessageComponent } from './messages-component';
 import { NewMessageComponent } from './new-message-component';
 import { NavComponent } from './nav-component';
-import { WebService } from './web.service';
 import { HomeComponent } from './home-component';
 import { RegisterComponent } from './register-component'
+
+import { WebService } from './web.service';
+import { AuthService } from './auth-service';
 
 var routes = [{
   path: '',
@@ -35,7 +37,7 @@ var routes = [{
   imports:      [ BrowserModule, MaterialModule, HttpModule, FormsModule, BrowserAnimationsModule, RouterModule.forRoot(routes), ReactiveFormsModule],
   declarations: [ AppComponent, MessageComponent, NewMessageComponent, NavComponent, HomeComponent, RegisterComponent],
   bootstrap:    [ AppComponent ],
-  providers: [ WebService ]
+  providers:    [ WebService, AuthService ]
 })
 
 export class AppModule { }
