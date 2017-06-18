@@ -11,6 +11,7 @@ export class AuthService{
     }
 
     register(user){
+        delete user.confirmPassword;
         this.http.post(this.baseUrl + '/register', user).subscribe();
     }
 }

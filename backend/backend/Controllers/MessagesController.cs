@@ -33,7 +33,7 @@ namespace backend.Controllers
         [HttpGet("{name}")]
         public IEnumerable<Message> Get(string name)
         {
-            return _messages.Where(a => string.Equals(a.Owner,name,StringComparison.OrdinalIgnoreCase)).ToList();
+            return _messages.Where(a => string.Equals(a.Owner, name, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
         [HttpPost]
