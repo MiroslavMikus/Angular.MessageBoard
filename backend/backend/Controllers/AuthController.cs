@@ -9,6 +9,12 @@ using backend.Models;
 
 namespace backend.Controllers
 {
+    public class LoginData
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
+
     public class JwtPacket
     {
         public string Token { get; set; }
@@ -26,18 +32,33 @@ namespace backend.Controllers
             context = a_context;
         }
 
+        [HttpPost("login")]
+        public ActionResult Login([FromBody] LoginData a_loginData)
+        {
+            var user = context.Users
+                .SingleOrDefault(a => string.Equals(a.Password, a_loginData.Password) && string.Equals(a.Email, a_loginData.Email));
+
+            if (user == null)
+                return NotFound("Email or passord incorrect");
+
+            return Ok(CreateJwtPacket(user));
+        }
 
         [HttpPost("register")]
         public JwtPacket Register([FromBody] User a_user)
         {
-            var jwt = new JwtSecurityToken();
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
             context.Users.Add(a_user);
 
             context.SaveChanges();
 
-            return new JwtPacket() { Token = encodedJwt , FirstName = a_user.FirstName};
+            return CreateJwtPacket(a_user);
+        }
+
+        private JwtPacket CreateJwtPacket(User a_user)
+        {
+            var jwt = new JwtSecurityToken();
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+            return new JwtPacket() { Token = encodedJwt, FirstName = a_user.FirstName };
         }
     }
 }

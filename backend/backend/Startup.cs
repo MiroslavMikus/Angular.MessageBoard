@@ -57,6 +57,14 @@ namespace backend
                 Owner = "ETR",
                 Text = "Also some test text"
             });
+
+            a_context.Users.Add(new User()
+            {
+                Email = "a",
+                Password = "aa",
+                FirstName = "Miroslav"
+            });
+
             a_context.SaveChanges();
         }
 
