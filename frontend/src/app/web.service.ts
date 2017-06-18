@@ -48,6 +48,10 @@ export class WebService{
         return this.http.get(this.baseUrl + '/users/me', this.auth.tokenHeader).map(res => res.json());
     }
 
+    saveUser(userData){
+        return this.http.post(this.baseUrl + '/users/me', userData, this.auth.tokenHeader).map(res => res.json());
+    }
+
     private handleError(error){
         this.snackBar.open(error,"close",{duration : 10000});
     }

@@ -13,6 +13,7 @@ import { NavComponent } from './nav-component';
 import { HomeComponent } from './home-component';
 import { RegisterComponent } from './register-component';
 import { LoginComponent } from './login-component';
+import { UserComponent } from './user-component';
 
 import { WebService } from './web.service';
 import { AuthService } from './auth-service';
@@ -36,11 +37,15 @@ var routes = [{
 {
   path: 'login',
   component: LoginComponent
+},
+{
+  path: 'user',
+  component: UserComponent
 }];
 
 @NgModule({
   imports:      [ BrowserModule, MaterialModule, HttpModule, FormsModule, BrowserAnimationsModule, RouterModule.forRoot(routes), ReactiveFormsModule],
-  declarations: [ AppComponent, MessageComponent, NewMessageComponent, NavComponent, HomeComponent, RegisterComponent, LoginComponent],
+  declarations: [ AppComponent, MessageComponent, NewMessageComponent, NavComponent, HomeComponent, RegisterComponent, LoginComponent, UserComponent],
   bootstrap:    [ AppComponent ],
   providers:    [ WebService, AuthService ]
 })

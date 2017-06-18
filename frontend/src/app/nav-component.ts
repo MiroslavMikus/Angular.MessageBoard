@@ -11,7 +11,7 @@ import { AuthService } from './auth-service';
         <span style="flex: 1 1 auto"></span>
         <button *ngIf="!auth.isAuthenticated" md-button routerLink="/login">Login</button>
         <button *ngIf="!auth.isAuthenticated" md-button routerLink="/register">Register</button>
-        <button *ngIf="auth.isAuthenticated" md-button routerLink="/">Welcome {{auth.name}}</button>
+        <button *ngIf="auth.isAuthenticated" md-button routerLink="/user">Welcome {{auth.name}}</button>
         <button *ngIf="auth.isAuthenticated" md-button (click)="auth.logout()">Logout</button>        
     </md-toolbar>
     `
