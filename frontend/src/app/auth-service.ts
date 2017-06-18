@@ -21,6 +21,12 @@ export class AuthService{
         return !!localStorage.getItem(this.token_key);
     }
 
+    login(loginData){
+        this.http.post(this.baseUrl + '/login', loginData).subscribe(res => {
+            console.log(res);
+        });
+    }
+
     register(user){
         delete user.confirmPassword;
         this.http.post(this.baseUrl + '/register', user).subscribe(res => {

@@ -11,7 +11,8 @@ import { MessageComponent } from './messages-component';
 import { NewMessageComponent } from './new-message-component';
 import { NavComponent } from './nav-component';
 import { HomeComponent } from './home-component';
-import { RegisterComponent } from './register-component'
+import { RegisterComponent } from './register-component';
+import { LoginComponent } from './login-component';
 
 import { WebService } from './web.service';
 import { AuthService } from './auth-service';
@@ -31,11 +32,15 @@ var routes = [{
 {
   path: 'register',
   component: RegisterComponent
+},
+{
+  path: 'login',
+  component: LoginComponent
 }];
 
 @NgModule({
   imports:      [ BrowserModule, MaterialModule, HttpModule, FormsModule, BrowserAnimationsModule, RouterModule.forRoot(routes), ReactiveFormsModule],
-  declarations: [ AppComponent, MessageComponent, NewMessageComponent, NavComponent, HomeComponent, RegisterComponent],
+  declarations: [ AppComponent, MessageComponent, NewMessageComponent, NavComponent, HomeComponent, RegisterComponent, LoginComponent],
   bootstrap:    [ AppComponent ],
   providers:    [ WebService, AuthService ]
 })
