@@ -29,6 +29,9 @@ export class NewMessageComponent{
     }
 
     post(){ 
+        if (this.message.text == '') {
+            return;
+        }
         this.webService.postMessage(this.message);
         this.message.text = '';
     }
