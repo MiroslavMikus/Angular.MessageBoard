@@ -12,3 +12,7 @@ body{
 .MdCard{
  margin-top: 8px;
 }
+
+.RegisterInput{
+  width:350px
+}

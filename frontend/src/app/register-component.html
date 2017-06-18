@@ -1,0 +1,21 @@
+<md-card class="MdCard">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <md-input-container>
+            <input class="RegisterInput" mdInput placeholder="First Name" formControlName="firstName">
+        </md-input-container>
+        <md-input-container>
+            <input class="RegisterInput" mdInput placeholder="Last Name" formControlName="lastName">
+        </md-input-container>
+        <md-input-container>
+            <input class="RegisterInput" type="email" mdInput placeholder="Email" formControlName="email">
+        </md-input-container>
+        <md-input-container>
+            <input class="RegisterInput" type="password" mdInput placeholder="Password" formControlName="password">
+        </md-input-container>
+        <md-input-container>
+            <input class="RegisterInput" type="password" mdInput placeholder="Confirm Password" formControlName="confirmPassword">
+        </md-input-container>
+        <br>
+        <button md-raised-button color="primary">Register</button>
+    </form>
+</md-card>
