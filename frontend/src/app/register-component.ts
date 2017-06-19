@@ -23,7 +23,8 @@ export class RegisterComponent  {
     }
 
     onSubmit(){
-        this.auth.register(this.form.value);
+        if (this.form.valid)
+            this.auth.register(this.form.value);
     }
 }
 
